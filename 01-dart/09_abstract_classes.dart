@@ -1,14 +1,14 @@
-void main(){
+void main() {
   final windPlant = WindPlant(initialEnergy: 100);
   final nuclearPlant = NuclearPlant(energyLeft: 1000);
 
   // print(windPlant);
-  print('wind: ${ chargePhone(windPlant) }');
-  print('nuclear: ${ chargePhone(nuclearPlant) }');
+  print('wind: ${chargePhone(windPlant)}');
+  print('nuclear: ${chargePhone(nuclearPlant)}');
 }
 
-double chargePhone(EnergyPlant plant){
-  if(plant.energyLeft < 10){
+double chargePhone(EnergyPlant plant) {
+  if (plant.energyLeft < 10) {
     throw Exception("Not enough energy");
   }
 
@@ -16,47 +16,38 @@ double chargePhone(EnergyPlant plant){
   return plant.energyLeft;
 }
 
-enum PlantType {
-  nuclear, wind, water
-}
+enum PlantType { nuclear, wind, water }
 
 abstract class EnergyPlant {
   double energyLeft;
-  final PlantType type; 
+  final PlantType type;
 
-  EnergyPlant({
-    required this.energyLeft,
-    required this.type
-  });
+  EnergyPlant({required this.energyLeft, required this.type});
 
   void consumeEnergy(double amount);
 }
 
 class WindPlant extends EnergyPlant {
-  WindPlant({
-    required double initialEnergy
-  })
-  : super(energyLeft: initialEnergy, type: PlantType.wind);
+  WindPlant({required double initialEnergy})
+    : super(energyLeft: initialEnergy, type: PlantType.wind);
 
   @override
-  void consumeEnergy(double amount){
+  void consumeEnergy(double amount) {
     energyLeft -= amount;
   }
 }
 
-class NuclearPlant implements EnergyPlant{
+class NuclearPlant implements EnergyPlant {
   @override
   double energyLeft;
 
   @override
   final PlantType type = PlantType.nuclear;
 
-  NuclearPlant({
-    required this.energyLeft
-  });
+  NuclearPlant({required this.energyLeft});
 
   @override
-  void consumeEnergy(double amount){
+  void consumeEnergy(double amount) {
     energyLeft -= (amount * 0.5);
   }
 }
