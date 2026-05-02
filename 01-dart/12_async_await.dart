@@ -1,10 +1,10 @@
 void main() async {
   print('Inicio del programa');
 
-  try{
+  try {
     final value = await httpGet('https://fernando-herrera.com/cursos');
     print(value);
-  } catch(err){
+  } catch (err) {
     print('Tenemos un error: $err');
   }
 
